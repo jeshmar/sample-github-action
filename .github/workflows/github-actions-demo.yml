@@ -2,36 +2,32 @@ name: GitHub Actions Demo
 on: [push]
 jobs:
   Explore-GitHub-Actions:
+    
     runs-on: ubuntu-latest
+
+    env:
+      BUILD_NUMBER: ${{ github.run_number }}
+    
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
 
       - name: List files in the repository
         run: |
+          echo "Build Number : ${{env.BUILD_NUMBER}}"
           ls ${{ github.workspace }}
 
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      
-      - name: test1
-        run: echo hoge
-        if: ( 'a' == 'a' )
+      - name: Set env BRANCH
+        run: echo "BRANCH=$(echo $GITHUB_REF | cut -d'/' -f 3)" >> $GITHUB_ENV
 
-      - name: test2
-        run: echo hoge
-        if: ( 'a' == 'b' )
+      - name: Set env NEED
+        run: |
+          if [[ $BRANCH == 'main' && $GITHUB_EVENT_NAME == 'push' ]]; then
+              echo "NEED=true" >> "$GITHUB_ENV"
+          else
+              echo "NEED=false" >> "$GITHUB_ENV"
+          fi
 
-      - name: test3
-        run: echo hoge
-        if: >
-          'a' == 'a'
-
-      - name: test4
-        run: echo hoge
-        if: >
-          'a' == 'b'
-
-      - name: test5
-        run: echo hoge
-        if: >
-          ${{ 'a' == 'a' }}
+      - name: Skip Deploy?
+        if: env.NEED != 'true'
+        run: echo "Only pushing to 'main' causes automatic deployment"
