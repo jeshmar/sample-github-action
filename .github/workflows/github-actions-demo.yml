@@ -31,3 +31,9 @@ jobs:
       - name: Skip Deploy?
         if: env.NEED != 'true'
         run: echo "Only pushing to 'main' causes automatic deployment"
+        
+      - name: TESTING
+        id: sample-composite-action
+        uses: jeshmar/sample-composite-action@main
+        with:
+          your_name: "Octocat"
