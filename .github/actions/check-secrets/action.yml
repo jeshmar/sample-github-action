@@ -2,16 +2,24 @@ name: "Composite Action Test with Secrets"
 
 description: "Run composite action with secrets as input parameter"
 
-# inputs:
-#   aws_key:
-#     description: 'abra-cadabra web services'
-#     default: 'To err is human, to forgive, divine.'
+inputs:
+  thisdoesnotwork:
+    description: 'abra-cadabra web services'
+    default: 'To err is human, to forgive, divine.'
+    type: boolean
+    default: 'true'
 
 runs:
   using: "composite"
   steps:
     - name: echo secret
+      if: thisdoesnotwork 
       shell: bash
       run: |
-        echo "::add-mask::${{ env.AWS_KEY }}"
+        echo "blah blah"
+
+    - name: echo secret
+      shell: bash
+      run: |
+        echo "thisdoesnotwork=" ${{ inputs.thisdoesnotwork }}
         echo Hi ${{ env.AWS_KEY }}

@@ -44,3 +44,9 @@ jobs:
         uses: ./.github/actions/check-secrets
         #with:
         #  aws_key: ${{ env.AWS_KEY }}
+
+      - name: TESTING Secrets with false
+        id: sample-composite-action-with-secrets
+        uses: ./.github/actions/check-secrets
+        with:
+          thisdoesnotwork: false
