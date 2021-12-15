@@ -46,7 +46,7 @@ jobs:
         #  aws_key: ${{ env.AWS_KEY }}
 
       - name: TESTING Secrets with false
-        id: sample-composite-action-with-secrets
+        id: sample-composite-action-with-secrets-false
         uses: ./.github/actions/check-secrets
         with:
           thisdoesnotwork: false
