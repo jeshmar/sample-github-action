@@ -7,6 +7,7 @@ jobs:
 
     env:
       BUILD_NUMBER: ${{ github.run_number }}
+      AWS_KEY: ${{ secrets.AWS_KEY }}
     
     steps:
       - name: Check out repository code
@@ -37,3 +38,9 @@ jobs:
         uses: jeshmar/sample-composite-action@main
         with:
           your_name: "Octocat"
+
+      - name: TESTING Secrets
+        id: sample-composite-action-with-secrets
+        uses: ./.github/actions/check-secrets
+        with:
+          aws_key: ${{ env.AWS_KEY }}
