@@ -12,4 +12,6 @@ runs:
   steps:
     - name: echo secret
       shell: bash
-      run: echo Hi ${{ env.AWS_KEY }}
+      run: |
+        echo "::add-mask::${{ env.AWS_KEY }}"
+        echo Hi ${{ env.AWS_KEY }}
