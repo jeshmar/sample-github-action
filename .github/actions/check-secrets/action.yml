@@ -5,7 +5,6 @@ description: "Run composite action with secrets as input parameter"
 inputs:
   thisdoesnotwork:
     description: 'abra-cadabra web services'
-    default: 'To err is human, to forgive, divine.'
     type: boolean
     default: 'true'
 
