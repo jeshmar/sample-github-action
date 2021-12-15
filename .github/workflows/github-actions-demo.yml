@@ -42,5 +42,5 @@ jobs:
       - name: TESTING Secrets
         id: sample-composite-action-with-secrets
         uses: ./.github/actions/check-secrets
-        with:
-          aws_key: ${{ env.AWS_KEY }}
+        #with:
+        #  aws_key: ${{ env.AWS_KEY }}

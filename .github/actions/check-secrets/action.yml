@@ -2,14 +2,14 @@ name: "Composite Action Test with Secrets"
 
 description: "Run composite action with secrets as input parameter"
 
-inputs:
-  aws_key:
-    description: 'abra-cadabra web services'
-    default: 'To err is human, to forgive, divine.'
+# inputs:
+#   aws_key:
+#     description: 'abra-cadabra web services'
+#     default: 'To err is human, to forgive, divine.'
 
 runs:
   using: "composite"
   steps:
     - name: echo secret
       shell: bash
-      run: echo Hi ${{ inputs.aws_key }}
+      run: echo Hi ${{ env.aws_key }}
