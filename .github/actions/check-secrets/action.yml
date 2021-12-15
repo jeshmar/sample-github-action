@@ -12,7 +12,7 @@ runs:
   using: "composite"
   steps:
     - name: echo secret
-      if: thisdoesnotwork 
+      if: $ {{ inputs.thisdoesnotwork == 'true' }} 
       shell: bash
       run: |
         echo "blah blah"
