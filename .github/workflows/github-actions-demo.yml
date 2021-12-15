@@ -40,13 +40,13 @@ jobs:
           your_name: "Octocat"
 
       - name: TESTING Secrets
-        id: sample-composite-action-with-secrets
+        id: sample-composite-action-with-secrets-not-displayed
         uses: ./.github/actions/check-secrets
         #with:
         #  aws_key: ${{ env.AWS_KEY }}
 
       - name: TESTING Secrets with false
-        id: sample-composite-action-with-secrets-false
+        id: sample-composite-action-with-secrets-displayed
         uses: ./.github/actions/check-secrets
         with:
-          thisdoesnotwork: false
+          show-the-secret: true

@@ -3,22 +3,19 @@ name: "Composite Action Test with Secrets"
 description: "Run composite action with secrets as input parameter"
 
 inputs:
-  thisdoesnotwork:
-    description: 'abra-cadabra web services'
+  show-the-secret:
+    required: false
     type: boolean
-    default: 'true'
+    default: false
 
 runs:
   using: "composite"
   steps:
     - name: echo secret
-      if: $ {{ inputs.thisdoesnotwork == 'true' }} 
       shell: bash
       run: |
-        echo "blah blah"
-
-    - name: echo secret
-      shell: bash
-      run: |
-        echo "thisdoesnotwork=" ${{ inputs.thisdoesnotwork }}
-        echo Hi ${{ env.AWS_KEY }}
+        if [[ "${{inputs.show-the-secret}}" == 'true' ]]; then
+          echo Hi ${{ env.AWS_KEY }}
+        else 
+          echo "Hello world"
+        fi
