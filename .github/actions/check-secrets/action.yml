@@ -12,4 +12,4 @@ runs:
   steps:
     - name: echo secret
       shell: bash
-      run: echo Hi ${{ env.aws_key }}
+      run: echo Hi ${{ env.AWS_KEY }}
