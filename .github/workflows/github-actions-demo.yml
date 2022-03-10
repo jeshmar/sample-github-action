@@ -13,6 +13,14 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
+    - name: Setup ytt
+      uses: vmware-tanzu/carvel-setup-action@v1
+      with:
+        only: ytt
+        ytt: v0.36.0
+      run: |-
+        ytt version
+
       - name: List files in the repository
         run: |
           echo "Build Number : ${{env.BUILD_NUMBER}}"
