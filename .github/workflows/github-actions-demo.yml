@@ -18,6 +18,8 @@ jobs:
         with:
           only: ytt
           ytt: v0.36.0
+
+      - name: check ytt version
         run: |-
           ytt version
 
